@@ -1,0 +1,10 @@
+import pandas as pd
+
+df = pd.read_csv("sales_data.csv")
+df=df.dropna()
+df = df[(df["quantity"] > 0) & (df["price"] > 0)]
+df["revenue"]=df["quantity"]*df["price"]
+print("Clean Orders:")
+print(df)
+print("Revenue by producr:")
+print(df.groupby("product")["revenue"].sum())
